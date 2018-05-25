@@ -3,6 +3,9 @@ using System.Collections;
 
 public class BallController : MonoBehaviour {
 
+    Animation anim;
+	public GameObject particle;
+    public GameObject twoPlus;
 
 	[SerializeField]
 	private float speed;
@@ -25,8 +28,11 @@ public class BallController : MonoBehaviour {
 		started = false;
 		gameOver = false;
 
-		//	rb.velocity = new Vector3 (speed, 0, 0);
-	}
+        GameObject obj = GameObject.Find("twoPlus");
+        anim = obj.gameObject.GetComponent<Animation>();
+
+        //	rb.velocity = new Vector3 (speed, 0, 0);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,6 +41,8 @@ public class BallController : MonoBehaviour {
 			if (Input.GetMouseButtonDown (0)) {
 				rb.velocity = new Vector3 (speed, 0, 0);
 				started = true;
+
+                GameManager.instance.StartGame();
 			}
 		}
 
@@ -43,8 +51,14 @@ public class BallController : MonoBehaviour {
 		if (!Physics.Raycast (transform.position, Vector3.down, 1f)) {
 			gameOver = true;
 			rb.velocity = new Vector3(0 , -20 , 0);
-		}
-		if (Input.GetMouseButtonDown (0) && !gameOver) {
+
+
+			Camera.main.GetComponent<CameraFollow>().gameOver = true;
+
+            GameManager.instance.GameOver();
+
+        }
+        if (Input.GetMouseButtonDown (0) && !gameOver) {
 			SwitchDirection();
 		}
 	}
@@ -57,5 +71,19 @@ public class BallController : MonoBehaviour {
 			rb.velocity = new Vector3 (0, 0 , speed);
 		}
 	}
+	void OnTriggerEnter(Collider col){
+		if (col.gameObject.tag == "Diamond1") {
+            ScoreManager.instance.IncrementScoreByTwo();
+
+            GameObject part = Instantiate(particle, col.gameObject.transform.position, Quaternion.identity) as GameObject;
+            GameObject bonus = Instantiate(twoPlus, col.gameObject.transform.position, Quaternion.identity) as GameObject;
+            
+            
+            Destroy(col.gameObject);
+            Destroy(part, 0.9f);
+            Destroy(bonus, 1f);
+
+        }
+    }
 
 }

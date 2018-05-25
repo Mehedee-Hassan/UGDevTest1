@@ -47,6 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BallController.cs" />
+     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\PlatformSpawner.cs" />
+     <Compile Include="Assets\Scripts\TriggerChecker.cs" />
+     <Compile Include="Assets\Scripts\UiManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>G:/ProgramFiles/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 09a692029c076064d88c07c6af945606
+timeCreated: 1527246794
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - zigzagPanel: {instanceID: 0}
+  - gameOverPanel: {instanceID: 0}
+  - score: {instanceID: 0}
+  - highscore1: {instanceID: 0}
+  - highscore2: {instanceID: 0}
+  - tapText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
